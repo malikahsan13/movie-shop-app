@@ -55,6 +55,17 @@ app.put("/api/course/:id", (req, res) => {
   }
 });
 
+app.delete("/api/course/:id", (req, res) => {
+  let course = courses.find((course) => course.id === parseInt(req.params.id));
+  if (!course) {
+    res.status(400).json({ message: "Course is not available" });
+  } else {
+    let index = courses.indexOf(course);
+    courses.splice(index, 1);
+    res.status(200).send(courses);
+  }
+});
+
 function validateInput(course) {
   const schema = Joi.object({
     name: Joi.string().alphanum().min(3).max(30).required(),
