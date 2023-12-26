@@ -1,7 +1,7 @@
 require("dotenv").config();
-const { parse } = require("dotenv");
 const express = require("express");
 const Joi = require("joi");
+const config = require("config");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const logging = require("./middleware/custom_middleware");
@@ -12,7 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(express.static("public"));
 // app.use(logging);/
-app.use(morgan("tiny"));
+// if (process.env.NODE_ENV === "dev") {
+if (app.get("env") === "development") {
+  app.use(morgan("tiny"));
+}
+
+console.log(config.get("name"));
+console.log(config.get("host.mail"));
+console.log(config.get("password"));
 
 const courses = [
   { id: 1, name: "Course 1" },

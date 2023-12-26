@@ -1,0 +1,6 @@
+{
+    "name":"My Application - production",
+    "host":{
+        "mail":"abc@gmail.com"
+    }
+}
