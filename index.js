@@ -2,10 +2,13 @@ require("dotenv").config();
 const { parse } = require("dotenv");
 const express = require("express");
 const Joi = require("joi");
+const logging = require("./middleware/custom_middleware");
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(logging);
 
 const courses = [
   { id: 1, name: "Course 1" },

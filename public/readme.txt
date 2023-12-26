@@ -1,0 +1,1 @@
+this is express static middleware testing readme
